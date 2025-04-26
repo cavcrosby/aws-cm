@@ -1,0 +1,55 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks.git
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+      - id: trailing-whitespace
+
+  - repo: https://github.com/gitleaks/gitleaks.git
+    rev: v8.24.3
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/tofuutils/pre-commit-opentofu.git
+    rev: v2.2.0
+    hooks:
+      - id: tofu_fmt
+      - id: tofu_validate
+
+  - repo: https://github.com/pre-commit/mirrors-mypy.git
+    rev: v1.15.0
+    hooks:
+      - id: mypy
+        args:
+          - --strict
+        additional_dependencies:
+          - boto3-stubs[iam] ==1.38.2
+          - boto3-stubs[s3] ==1.38.2
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit.git
+    rev: v0.11.7
+    hooks:
+      - id: ruff
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: tombi
+        name: tombi
+        entry: tombi lint
+        language: python
+        types:
+          - toml
+        additional_dependencies:
+          - tombi ==0.3.28
+
+      - id: tombi-format
+        name: tombi-format
+        entry: tombi format
+        language: python
+        types:
+          - toml
+        additional_dependencies:
+          - tombi ==0.3.28
