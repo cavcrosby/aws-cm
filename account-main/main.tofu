@@ -51,3 +51,23 @@ resource "aws_budgets_budget" "max_monthly_costs" {
     subscriber_email_addresses = ["cavcrosby@gmail.com"]
   }
 }
+
+resource "aws_organizations_organization" "main" {
+  feature_set = "ALL"
+}
+
+resource "random_string" "suffix" {
+  count   = var.manage_test_account ? 1 : 0
+  length  = 3
+  numeric = false
+  special = false
+  upper   = false
+}
+
+resource "aws_organizations_account" "test" {
+  count             = var.manage_test_account ? 1 : 0
+  name              = "test-${random_string.suffix[0].result}"
+  email             = "cavcrosby+aws-test-${random_string.suffix[0].result}@gmail.com"
+  close_on_deletion = true
+  depends_on        = [aws_organizations_organization.main]
+}
