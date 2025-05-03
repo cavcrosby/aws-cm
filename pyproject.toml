@@ -1,0 +1,13 @@
+[project]
+name = "aws-cm"
+version = "1.0.0"
+description = "My approach to configuration management (cm) for my AWS infrastructure."
+requires-python = ">=3.13,<3.14"
+license-files = ["LICENSE"]
+authors = [{ name = "Conner Crosby", email = "cavcrosby@gmail.com" }]
+
+[tool.ruff.lint]
+extend-select = ["I", "UP", "SIM", "D", "E501"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
