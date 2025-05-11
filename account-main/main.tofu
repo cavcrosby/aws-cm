@@ -1,5 +1,12 @@
 locals {
   primary_contact_email = "cavcrosby@gmail.com"
+  all_registered_domains = toset([
+    "cavcrosby.com",
+    "cavcrosby.net",
+    "cavcrosby.tech",
+    "cavcrosby.io",
+    ]
+  )
 }
 
 terraform {
@@ -78,16 +85,23 @@ resource "aws_organizations_account" "test" {
 
 data "aws_account_primary_contact" "main" {}
 
+resource "aws_route53_zone" "all_registered_domains" {
+  for_each = local.all_registered_domains
+
+  name = each.key
+}
+
 resource "aws_route53domains_registered_domain" "all_registered_domains" {
-  for_each = toset(
-    [
-      "cavcrosby.com",
-      "cavcrosby.net",
-      "cavcrosby.tech",
-      "cavcrosby.io",
-    ]
-  )
+  for_each    = local.all_registered_domains
   domain_name = each.key
+
+  name_server {
+    name = aws_route53_zone.all_registered_domains[each.key].name_servers[0]
+  }
+
+  name_server {
+    name = aws_route53_zone.all_registered_domains[each.key].name_servers[1]
+  }
 
   admin_contact {
     address_line_1 = data.aws_account_primary_contact.main.address_line_1
