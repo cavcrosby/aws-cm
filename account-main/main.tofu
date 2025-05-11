@@ -145,3 +145,7 @@ resource "aws_route53domains_registered_domain" "all_registered_domains" {
     zip_code = data.aws_account_primary_contact.main.postal_code
   }
 }
+
+resource "aws_route53_zone" "cavcrosby_net" {
+  name = "cavcrosby.net"
+}
