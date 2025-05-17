@@ -8,12 +8,12 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/gitleaks/gitleaks.git
-    rev: v8.24.3
+    rev: v8.26.0
     hooks:
       - id: gitleaks
 
   - repo: https://github.com/DavidAnson/markdownlint-cli2.git
-    rev: v0.17.2
+    rev: v0.18.1
     hooks:
       - id: markdownlint-cli2
 
@@ -34,7 +34,7 @@ repos:
           - boto3-stubs[s3] ==1.38.2
 
   - repo: https://github.com/astral-sh/ruff-pre-commit.git
-    rev: v0.11.7
+    rev: v0.11.10
     hooks:
       - id: ruff
       - id: ruff-format
@@ -57,7 +57,7 @@ repos:
         types:
           - toml
         additional_dependencies:
-          - tombi ==0.3.28
+          - tombi ==0.3.40
 
       - id: tombi-format
         name: tombi-format
@@ -66,4 +66,4 @@ repos:
         types:
           - toml
         additional_dependencies:
-          - tombi ==0.3.28
+          - tombi ==0.3.40
