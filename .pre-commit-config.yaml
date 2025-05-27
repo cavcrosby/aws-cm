@@ -39,6 +39,12 @@ repos:
       - id: ruff
       - id: ruff-format
 
+  - repo: https://github.com/tombi-toml/tombi-pre-commit.git
+    rev: v0.3.55
+    hooks:
+      - id: tombi-lint
+      - id: tombi-format
+
   - repo: local
     hooks:
       - id: prettier
@@ -49,21 +55,3 @@ repos:
           - markdown
         additional_dependencies:
           - prettier@3.5.3
-
-      - id: tombi
-        name: tombi
-        entry: tombi lint
-        language: python
-        types:
-          - toml
-        additional_dependencies:
-          - tombi ==0.3.28
-
-      - id: tombi-format
-        name: tombi-format
-        entry: tombi format
-        language: python
-        types:
-          - toml
-        additional_dependencies:
-          - tombi ==0.3.28
