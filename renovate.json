@@ -9,5 +9,41 @@
     },
     "lockFileMaintenance": {
         "enabled": true
-    }
+    },
+    "customManagers": [
+        {
+            "customType": "regex",
+            "managerFilePatterns": [
+                "account-main/main.tofu"
+            ],
+            "matchStrings": [
+                "# renovate: datasource=(?<datasource>\\S+) packageName=(?<packageName>\\S+) versioning=(?<versioning>\\S+)\\n\\s*required_version\\s+=\\s+\"(?<currentValue>.+)\""
+            ]
+        }
+    ],
+    "packageRules": [
+        {
+            "groupName": "all dependencies",
+            "matchPackageNames": [
+                "opentofu/opentofu"
+            ]
+        },
+        {
+            "groupName": "all dependencies",
+            "enabled": false,
+            "matchPackageNames": [
+                "hashicorp/terraform"
+            ]
+        },
+        {
+            "groupName": "all dependencies",
+            "registryUrls": [
+                "https://registry.opentofu.org"
+            ],
+            "matchDatasources": [
+                "terraform-provider",
+                "terraform-module"
+            ]
+        }
+    ]
 }

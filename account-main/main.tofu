@@ -24,6 +24,7 @@ terraform {
     profile = "main-opentofu"
   }
 
+  # renovate: datasource=github-releases packageName=opentofu/opentofu versioning=hashicorp
   required_version = "~> 1.9.0"
 }
 
