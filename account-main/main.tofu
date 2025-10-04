@@ -14,7 +14,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 5.98"
+      version = ">= 6.15"
     }
   }
   backend "s3" {
@@ -25,7 +25,7 @@ terraform {
   }
 
   # renovate: datasource=github-releases packageName=opentofu/opentofu versioning=hashicorp
-  required_version = "~> 1.9.0"
+  required_version = "~> 1.10.0"
 }
 
 provider "aws" {

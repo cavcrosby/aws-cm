@@ -9,7 +9,6 @@ My approach to configuration management (cm) for my AWS infrastructure.
 3. Create a `root` account user access key.
 4. Setup `aws-cli` client with the `root` account user access key.
 5. Run the `bootstrap.py` script.
-
    - Record the `admin` account user password created.
    - Record the `opentofu` account user access key created.
    - These changes can be undone by using the `bootstrap.py` script's `--undo`
