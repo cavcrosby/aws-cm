@@ -65,7 +65,7 @@ resource "aws_budgets_budget" "max_monthly_costs" {
   }
 }
 
-resource "aws_organizations_organization" "main" {
+resource "aws_organizations_organization" "this" {
   feature_set = "ALL"
 }
 
@@ -82,10 +82,10 @@ resource "aws_organizations_account" "test" {
   name              = "test-${random_string.suffix[0].result}"
   email             = "cavcrosby+aws-test-${random_string.suffix[0].result}@gmail.com"
   close_on_deletion = true
-  depends_on        = [aws_organizations_organization.main]
+  depends_on        = [aws_organizations_organization.this]
 }
 
-data "aws_account_primary_contact" "main" {}
+data "aws_account_primary_contact" "this" {}
 
 resource "aws_route53_zone" "registered_domains" {
   for_each = local.registered_domains
@@ -105,58 +105,58 @@ resource "aws_route53domains_registered_domain" "registered_domains" {
   }
 
   admin_contact {
-    address_line_1 = data.aws_account_primary_contact.main.address_line_1
-    city           = data.aws_account_primary_contact.main.city
-    country_code   = data.aws_account_primary_contact.main.country_code
+    address_line_1 = data.aws_account_primary_contact.this.address_line_1
+    city           = data.aws_account_primary_contact.this.city
+    country_code   = data.aws_account_primary_contact.this.country_code
     email          = local.primary_contact_email
     first_name     = "Conner"
     last_name      = "Crosby"
     phone_number = replace(
-      data.aws_account_primary_contact.main.phone_number, "/\\s/", "."
+      data.aws_account_primary_contact.this.phone_number, "/\\s/", "."
     )
-    state    = data.aws_account_primary_contact.main.state_or_region
-    zip_code = data.aws_account_primary_contact.main.postal_code
+    state    = data.aws_account_primary_contact.this.state_or_region
+    zip_code = data.aws_account_primary_contact.this.postal_code
   }
 
   billing_contact {
-    address_line_1 = data.aws_account_primary_contact.main.address_line_1
-    city           = data.aws_account_primary_contact.main.city
-    country_code   = data.aws_account_primary_contact.main.country_code
+    address_line_1 = data.aws_account_primary_contact.this.address_line_1
+    city           = data.aws_account_primary_contact.this.city
+    country_code   = data.aws_account_primary_contact.this.country_code
     email          = local.primary_contact_email
     first_name     = "Conner"
     last_name      = "Crosby"
     phone_number = replace(
-      data.aws_account_primary_contact.main.phone_number, "/\\s/", "."
+      data.aws_account_primary_contact.this.phone_number, "/\\s/", "."
     )
-    state    = data.aws_account_primary_contact.main.state_or_region
-    zip_code = data.aws_account_primary_contact.main.postal_code
+    state    = data.aws_account_primary_contact.this.state_or_region
+    zip_code = data.aws_account_primary_contact.this.postal_code
   }
 
   registrant_contact {
-    address_line_1 = data.aws_account_primary_contact.main.address_line_1
-    city           = data.aws_account_primary_contact.main.city
-    country_code   = data.aws_account_primary_contact.main.country_code
+    address_line_1 = data.aws_account_primary_contact.this.address_line_1
+    city           = data.aws_account_primary_contact.this.city
+    country_code   = data.aws_account_primary_contact.this.country_code
     email          = local.primary_contact_email
     first_name     = "Conner"
     last_name      = "Crosby"
     phone_number = replace(
-      data.aws_account_primary_contact.main.phone_number, "/\\s/", "."
+      data.aws_account_primary_contact.this.phone_number, "/\\s/", "."
     )
-    state    = data.aws_account_primary_contact.main.state_or_region
-    zip_code = data.aws_account_primary_contact.main.postal_code
+    state    = data.aws_account_primary_contact.this.state_or_region
+    zip_code = data.aws_account_primary_contact.this.postal_code
   }
 
   tech_contact {
-    address_line_1 = data.aws_account_primary_contact.main.address_line_1
-    city           = data.aws_account_primary_contact.main.city
-    country_code   = data.aws_account_primary_contact.main.country_code
+    address_line_1 = data.aws_account_primary_contact.this.address_line_1
+    city           = data.aws_account_primary_contact.this.city
+    country_code   = data.aws_account_primary_contact.this.country_code
     email          = local.primary_contact_email
     first_name     = "Conner"
     last_name      = "Crosby"
     phone_number = replace(
-      data.aws_account_primary_contact.main.phone_number, "/\\s/", "."
+      data.aws_account_primary_contact.this.phone_number, "/\\s/", "."
     )
-    state    = data.aws_account_primary_contact.main.state_or_region
-    zip_code = data.aws_account_primary_contact.main.postal_code
+    state    = data.aws_account_primary_contact.this.state_or_region
+    zip_code = data.aws_account_primary_contact.this.postal_code
   }
 }
