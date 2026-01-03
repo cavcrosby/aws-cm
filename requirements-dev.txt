@@ -1,6 +1,6 @@
-boto3-stubs[iam] ==1.40.45
-boto3-stubs[s3] ==1.40.45
-mypy ==1.18.2
-pre-commit ==4.3.0
-ruff ==0.13.3
-tombi ==0.6.19
+boto3-stubs[iam] ==1.42.21
+boto3-stubs[s3] ==1.42.21
+mypy ==1.19.1
+pre-commit ==4.5.1
+ruff ==0.14.10
+tombi ==0.7.14
