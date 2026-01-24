@@ -89,19 +89,19 @@ data "aws_account_primary_contact" "this" {}
 
 resource "aws_route53_zone" "registered_domains" {
   for_each = local.registered_domains
-  name     = each.key
+  name     = each.value
 }
 
 resource "aws_route53domains_registered_domain" "registered_domains" {
   for_each    = local.registered_domains
-  domain_name = each.key
+  domain_name = each.value
 
   name_server {
-    name = aws_route53_zone.registered_domains[each.key].name_servers[0]
+    name = aws_route53_zone.registered_domains[each.value].name_servers[0]
   }
 
   name_server {
-    name = aws_route53_zone.registered_domains[each.key].name_servers[1]
+    name = aws_route53_zone.registered_domains[each.value].name_servers[1]
   }
 
   admin_contact {
