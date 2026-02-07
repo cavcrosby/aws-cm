@@ -14,7 +14,7 @@
         {
             "customType": "regex",
             "managerFilePatterns": [
-                "account-main/main.tofu"
+                "/\\S+\\.tofu/"
             ],
             "matchStrings": [
                 "# renovate: datasource=(?<datasource>\\S+) packageName=(?<packageName>\\S+) versioning=(?<versioning>\\S+)\\n\\s*required_version\\s+=\\s+\"(?<currentValue>.+)\""
